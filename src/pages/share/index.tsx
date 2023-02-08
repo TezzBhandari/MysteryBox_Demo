@@ -3,7 +3,7 @@ import { useState } from "react";
 const Share = () => {
   const [progress, setProgress] = useState(100);
   const shareHandler = async () => {
-    if (navigator.canShare()) {
+    if (navigator.share) {
       navigator
         .share({
           url: "https://www.youtube.com/",

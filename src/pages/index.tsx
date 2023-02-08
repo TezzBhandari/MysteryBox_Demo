@@ -1,9 +1,6 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import { useState } from "react";
 import MysteryBox from "../components/MysteryBox";
-import Modal from "@/components/Modal";
-import useMysterBoxStore from "@/store";
 import { v4 as uuidv4 } from "uuid";
 
 const inter = Inter({ subsets: ["latin"] });
