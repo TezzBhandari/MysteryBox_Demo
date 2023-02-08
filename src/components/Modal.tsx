@@ -15,7 +15,20 @@ const Modal = ({ success }: ModalProps) => {
           <div>
             <h1>Congratulations</h1>
             <p>You got 80% on coin indicator</p>
-            <button onClick={() => router.replace("/share")}>ok</button>
+            <button
+              onClick={() => {
+                const session = localStorage.getItem("session");
+                if (session === null) {
+                  localStorage.setItem(
+                    "session",
+                    JSON.stringify({ progress: 80 })
+                  );
+                }
+                router.replace("/share");
+              }}
+            >
+              ok
+            </button>
           </div>
         ) : (
           <div>
