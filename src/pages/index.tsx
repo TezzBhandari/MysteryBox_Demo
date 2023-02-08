@@ -1,11 +1,26 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
+import { SetStateAction, useEffect, useState } from "react";
+import MysteryBox from "../components/MysteryBox";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  // useEffect(() => {
+  //   const request = indexedDB.open("notes");
+  //   request.onupgradeneeded = () => {
+  //     alert("upgraded called");
+  //   };
+  //   request.onsuccess = () => {
+  //     alert("success called");
+  //   };
+  //   request.onerror = () => {
+  //     alert("error called");
+  //   };
+  // }, []);
+
   return (
     <>
       <Head>
@@ -14,7 +29,42 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="bg-red-400">hello</h1>
+
+      <main className="flex items-center justify-center min-h-screen columns-1">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            // gridGap: "2px",
+            justifyContent: "center",
+            alignItems: "center",
+            // height: "100vh",
+          }}
+          className="grid grid-cols-3"
+        >
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((d) => {
+            return (
+              <MysteryBox key={d} attempt={attempt} setAttempt={setAttempt} />
+            );
+          })}
+        </div>
+      </main>
+      {/* <div className="relative w-64 h-64 border border-black rounded-lg">
+        <div
+          className={`w-full h-full bg-emerald-400 cursor-pointer transition duration-500 transform hover:scale-110 ${
+            isOpen ? "hidden" : ""
+          }`}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <div
+            className={`w-full h-full bg-emerald-500 absolute top-0 left-0 transform translate-y-full ${
+              isOpen ? "" : "hidden"
+            }`}
+          >
+            The mystery has been solved!
+          </div>
+        </div>
+      </div> */}
     </>
   );
 }
